@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
@@ -14,13 +14,26 @@
   <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 
   <style>
-     /* --- BASICS & MOBILE FIRST --- */
-     * { box-sizing: border-box; }
-     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #121212; color: white; margin: 0; padding: 0; position: fixed; inset: 0; display: flex; flex-direction: column; }
+     /* --- BASICS, SCROLLBARS & MOBILE FIRST --- */
+     * { 
+       box-sizing: border-box; 
+       /* Cleane Scrollbars für Firefox */
+       scrollbar-width: thin; 
+       scrollbar-color: #555 transparent;
+     }
+
+     /* Cleane Scrollbars für Chrome/Edge/Safari */
+     ::-webkit-scrollbar { width: 6px; height: 6px; }
+     ::-webkit-scrollbar-track { background: transparent; }
+     ::-webkit-scrollbar-thumb { background: #555; border-radius: 10px; }
+     ::-webkit-scrollbar-thumb:hover { background: #888; }
+
+     /* overflow-x: hidden verhindert seitliches Wackeln/Scrollen */
+     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #121212; color: white; margin: 0; padding: 0; position: fixed; inset: 0; display: flex; flex-direction: column; overflow-x: hidden; }
      button { cursor: pointer; font-family: inherit; }
      input { font-size: 16px; padding: 12px; border-radius: 8px; border: none; width: 100%; font-family: inherit; }
      
-     .view { display: none; flex-direction: column; height: 100%; width: 100%; position: relative; }
+     .view { display: none; flex-direction: column; height: 100%; width: 100%; position: relative; overflow-x: hidden; }
      .active-view { display: flex; }
      
      /* Karten-Gitter Fix */
@@ -40,7 +53,7 @@
      .btn-import { background: #8E24AA; color: white; padding: 14px; border-radius: 8px; border: none; font-weight: bold; width: 100%; font-size: 16px; }
 
      /* --- 2. KARTE (AUSTRAGEN) --- */
-     #view-map { position: relative; } /* Wichtig für die Buttons */
+     #view-map { position: relative; } 
      #map { height: 45%; flex-shrink: 0; width: 100%; z-index: 1; position: relative; }
      
      .btn-list-top { position: absolute; top: 15px; right: 15px; font-size: 18px; background: rgba(0,0,0,0.8); border: none; color: white; padding: 10px 15px; border-radius: 12px; z-index: 1000; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
@@ -72,13 +85,16 @@
      
      /* --- 4. BEARBEITUNGS ANSICHT --- */
      #view-edit { background: #1a1a1a; }
-     .edit-scroll-area { flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; }
+     .edit-scroll-area { flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; overflow-x: hidden; }
      .edit-list { list-style: none; padding: 15px; margin: 0; }
      
      .edit-item { background: #2a2a2a; padding: 10px; margin-bottom: 10px; border-radius: 10px; display: flex; align-items: center; gap: 8px; border: 1px solid #444; }
      .drag-handle { font-size: 26px; color: #888; padding: 5px 10px; cursor: grab; display: flex; align-items: center; }
+     
+     /* Feldgrößen auf dem Handy fixiert */
      .edit-street { flex-grow: 1; background: #111; color: white; padding: 12px; font-size: 16px; min-width: 0; }
-     .edit-count { width: 50px; text-align: center; background: #111; color: white; font-weight: bold; font-size: 18px; padding: 12px; flex-shrink: 0; }
+     .edit-count { width: 60px !important; text-align: center; background: #111; color: white; font-weight: bold; font-size: 18px; padding: 12px; flex-shrink: 0; }
+     #new-count { width: 70px !important; flex-shrink: 0; text-align: center; background: #111; color: white; }
      
      .action-btns { display: flex; flex-direction: column; gap: 5px; }
      .btn-gps-fix { background: #00E676; color: black; border: none; border-radius: 6px; width: 45px; height: 35px; font-size: 16px; font-weight: bold; }
@@ -127,8 +143,8 @@
        .btn-list-top { font-size: 28px; padding: 20px 30px; border-radius: 18px; right: 30px; top: 30px; }
        .btn-back-start { font-size: 28px; padding: 20px 30px; border-radius: 18px; left: 30px; top: 30px; }
 
-       /* 3. Listenansicht & Footer-Balken Skalierung */
-       .clean-list { grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)); gap: 30px; max-width: 1800px; padding: 40px; margin: 0 auto; width: 100%; align-content: start; }
+       /* 3. Listenansicht & Footer-Balken Skalierung (Abstand Fix per Grid) */
+       .clean-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)); gap: 30px; max-width: 1800px; padding: 40px; margin: 0 auto; width: 100%; align-content: start; }
        .clean-item { padding: 35px; border-radius: 20px; margin-bottom: 0; }
        .clean-item .street { font-size: 32px; }
        .clean-item .details { font-size: 22px; margin-top: 12px; }
@@ -147,7 +163,7 @@
        .edit-list { padding: 0; overflow-y: auto; max-height: calc(100vh - 200px); padding-right: 20px; }
        .edit-item { padding: 25px; margin-bottom: 25px; border-radius: 18px; }
        .edit-street { font-size: 26px; padding: 20px; }
-       .edit-count { font-size: 28px; width: 90px; padding: 20px; }
+       .edit-count { font-size: 28px; width: 90px !important; padding: 20px; }
        .btn-gps-fix, .btn-del { width: 70px; height: 60px; font-size: 28px; }
 
        /* Die Hinzufügen-Box bleibt rechts fixiert (Sticky) */
@@ -239,7 +255,7 @@
         
         <div class="add-row">
           <input type="text" id="new-street" placeholder="Straße & Hsnr. (Wird autom. ausgefüllt)" style="background:#111; color:white; flex-grow:1; min-width:0;">
-          <input type="number" id="new-count" value="1" min="1" style="text-align:center; background:#111; color:white; flex-shrink:0;">
+          <input type="number" id="new-count" value="1" min="1">
         </div>
         <button class="btn-add" onclick="addStop()">+ Hinzufügen</button>
         
