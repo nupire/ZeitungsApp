@@ -17,18 +17,15 @@
      /* --- BASICS, SCROLLBARS & MOBILE FIRST --- */
      * { 
        box-sizing: border-box; 
-       /* Cleane Scrollbars für Firefox */
        scrollbar-width: thin; 
        scrollbar-color: #555 transparent;
      }
 
-     /* Cleane Scrollbars für Chrome/Edge/Safari */
      ::-webkit-scrollbar { width: 6px; height: 6px; }
      ::-webkit-scrollbar-track { background: transparent; }
      ::-webkit-scrollbar-thumb { background: #555; border-radius: 10px; }
      ::-webkit-scrollbar-thumb:hover { background: #888; }
 
-     /* overflow-x: hidden verhindert seitliches Wackeln/Scrollen */
      body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #121212; color: white; margin: 0; padding: 0; position: fixed; inset: 0; display: flex; flex-direction: column; overflow-x: hidden; }
      button { cursor: pointer; font-family: inherit; }
      input { font-size: 16px; padding: 12px; border-radius: 8px; border: none; width: 100%; font-family: inherit; }
@@ -36,7 +33,6 @@
      .view { display: none; flex-direction: column; height: 100%; width: 100%; position: relative; overflow-x: hidden; }
      .active-view { display: flex; }
      
-     /* Karten-Gitter Fix */
      .leaflet-container { background: #121212 !important; }
 
      /* --- 1. STARTSEITE --- */
@@ -91,7 +87,6 @@
      .edit-item { background: #2a2a2a; padding: 10px; margin-bottom: 10px; border-radius: 10px; display: flex; align-items: center; gap: 8px; border: 1px solid #444; }
      .drag-handle { font-size: 26px; color: #888; padding: 5px 10px; cursor: grab; display: flex; align-items: center; }
      
-     /* Feldgrößen auf dem Handy fixiert */
      .edit-street { flex-grow: 1; background: #111; color: white; padding: 12px; font-size: 16px; min-width: 0; }
      .edit-count { width: 60px !important; text-align: center; background: #111; color: white; font-weight: bold; font-size: 18px; padding: 12px; flex-shrink: 0; }
      #new-count { width: 70px !important; flex-shrink: 0; text-align: center; background: #111; color: white; }
@@ -110,10 +105,9 @@
      .btn-del-route-desktop { width: 100%; margin-top: 20px; padding: 15px; background: #FF1744; color: white; border: none; border-radius: 10px; font-weight:bold; font-size: 16px; }
 
      /* =========================================================
-        DESKTOP OPTIMIERUNG (ab 900px Bildschirmbreite)
+        DESKTOP OPTIMIERUNG
         ========================================================= */
      @media (min-width: 900px) {
-       /* 1. Startseite: Noch größere Vollbild-Skalierung */
        #view-start { padding: 50px; justify-content: center; }
        .start-container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1800px; margin: auto; }
        .start-header-full { grid-column: 1 / -1; text-align: center; margin-bottom: 40px; }
@@ -128,7 +122,6 @@
        .import-export-box p { font-size: 22px !important; margin-bottom: 35px !important; }
        .btn-export, .btn-import { padding: 26px; font-size: 26px; border-radius: 16px; margin-bottom: 22px; }
 
-       /* 2. Austragen-Ansicht: Karte 50%, Riesige Typografie */
        #view-map { flex-direction: row; }
        #map { height: 100%; width: 50%; order: 1; }
        .info-area { width: 50%; height: 100%; order: 2; padding: 80px; justify-content: center; gap: 30px; }
@@ -139,11 +132,9 @@
        .btn-next { font-size: 45px; padding: 40px; border-radius: 25px; max-width: 800px; }
        #gps-status { font-size: 26px; margin-top: 25px; }
        
-       /* Buttons ganz an den Rand des Fensters! */
        .btn-list-top { font-size: 28px; padding: 20px 30px; border-radius: 18px; right: 30px; top: 30px; }
        .btn-back-start { font-size: 28px; padding: 20px 30px; border-radius: 18px; left: 30px; top: 30px; }
 
-       /* 3. Listenansicht & Footer-Balken Skalierung (Abstand Fix per Grid) */
        .clean-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)); gap: 30px; max-width: 1800px; padding: 40px; margin: 0 auto; width: 100%; align-content: start; }
        .clean-item { padding: 35px; border-radius: 20px; margin-bottom: 0; }
        .clean-item .street { font-size: 32px; }
@@ -158,7 +149,6 @@
        .bottom-bar .btn-edit-mode { font-size: 32px; padding: 30px; border-radius: 18px; flex: 2; }
        .bottom-bar .btn-back { font-size: 28px; padding: 30px; border-radius: 18px; flex: 1; margin-top: 0 !important; }
 
-       /* 4. Bearbeiten-Ansicht: Liste Links (45%), Große Karte Rechts (55%) */
        .edit-scroll-area { display: grid; grid-template-columns: 45% 55%; gap: 50px; max-width: 1800px; margin: 0 auto; width: 100%; padding: 50px; box-sizing: border-box; align-items: start; }
        .edit-list { padding: 0; overflow-y: auto; max-height: calc(100vh - 200px); padding-right: 20px; }
        .edit-item { padding: 25px; margin-bottom: 25px; border-radius: 18px; }
@@ -166,7 +156,6 @@
        .edit-count { font-size: 28px; width: 90px !important; padding: 20px; }
        .btn-gps-fix, .btn-del { width: 70px; height: 60px; font-size: 28px; }
 
-       /* Die Hinzufügen-Box bleibt rechts fixiert (Sticky) */
        .add-box { margin: 0; padding: 40px; border-radius: 25px; position: sticky; top: 0; display: flex; flex-direction: column; background: #222; border-width: 4px; }
        .add-box strong { font-size: 32px; margin-bottom: 15px; }
        #edit-map-instruction { font-size: 24px; margin-bottom: 20px; }
@@ -177,7 +166,6 @@
        .btn-add { font-size: 32px; padding: 25px; border-radius: 18px; }
        .btn-save-edit { font-size: 28px; padding: 18px 35px; }
        
-       /* Löschen Button ist jetzt in der add-box drin */
        .btn-del-route-desktop { font-size: 24px; padding: 25px; border-radius: 16px; margin-top: 40px; }
      }
   </style>
@@ -207,7 +195,6 @@
 
   <!-- 2. KARTE (AUSTRAGEN) -->
   <div id="view-map" class="view">
-    <!-- Buttons liegen unsichtbar über allem (auf PC ganz links und ganz rechts) -->
     <button class="btn-back-start" onclick="showView('view-start')">🏠 Menü</button>
     <button class="btn-list-top" onclick="openListView()">☰ Liste</button>
 
@@ -243,10 +230,8 @@
     </div>
     
     <div class="edit-scroll-area">
-      <!-- Linke Spalte auf dem PC -->
       <ul class="edit-list" id="edit-list-container"></ul>
 
-      <!-- Rechte Spalte auf dem PC (Große Sticky Karte) -->
       <div class="add-box" id="map-add-box">
         <strong>Adresse per Karte auswählen:</strong>
         <div id="edit-map-instruction">Tippe auf die Karte, um den Pin zu setzen.</div>
@@ -259,7 +244,6 @@
         </div>
         <button class="btn-add" onclick="addStop()">+ Hinzufügen</button>
         
-        <!-- Button zum Löschen wurde HIER hinein verschoben (unter Hinzufügen) -->
         <button onclick="deleteCurrentRoute()" class="btn-del-route-desktop">🗑 Diese komplette Route löschen</button>
       </div>
     </div>
@@ -279,7 +263,6 @@
     let sortableInstance = null;
     let fixingIndex = null;
 
-    // Window Resize Event für flüssige Karten-Anpassung
     window.addEventListener('resize', () => {
       if(map) map.invalidateSize();
       if(editMap) editMap.invalidateSize();
@@ -293,7 +276,6 @@
       if (viewId === 'view-start') renderStartScreen();
       else if (viewId === 'view-map') { 
         if(map) { 
-          // Doppelter Check entfernt Gitter-Fehler beim Wechsel
           setTimeout(() => { map.invalidateSize(); }, 50); 
           setTimeout(() => { map.invalidateSize(); }, 300); 
         } 
@@ -341,13 +323,20 @@
       }
     }
 
+    // GEPATCHT: Lösch-Funktion aktualisiert nun die Referenzen korrekt
     function deleteCurrentRoute() {
       if (Object.keys(routes).length <= 1) { alert("Du musst mindestens eine Route behalten!"); return; }
       if (confirm(`Möchtest du "${currentRouteName}" wirklich löschen?`)) {
         delete routes[currentRouteName];
         localStorage.removeItem(`index_${currentRouteName}`);
+        
+        // WICHTIG: Die interne Speicherzuweisung auf die neue Route umschalten!
         currentRouteName = Object.keys(routes)[0];
-        saveData(); showView('view-start');
+        route = routes[currentRouteName]; 
+        currentIndex = parseInt(localStorage.getItem(`index_${currentRouteName}`)) || 0;
+        
+        saveData(); 
+        showView('view-start');
       }
     }
 
@@ -368,7 +357,6 @@
         }
       });
       
-      // Gitter verhindern
       setTimeout(() => { if(map) map.invalidateSize(); }, 300);
     }
 
@@ -416,7 +404,7 @@
       showView('view-list');
     }
 
-    // --- 4. BEARBEITUNGS ANSICHT (Drag & Drop + Karte) ---
+    // --- 4. BEARBEITUNGS ANSICHT ---
     function openEditView() {
       renderEditList();
       initEditMap();
@@ -455,7 +443,6 @@
       });
     }
 
-    // --- KARTE ZUM PINNEN ---
     function initEditMap() {
       if(editMap) return;
       
@@ -508,7 +495,6 @@
         }
       });
       
-      // Gitter verhindern
       setTimeout(() => { if(editMap) editMap.invalidateSize(); }, 300);
     }
 
@@ -590,7 +576,6 @@
       localStorage.setItem(`index_${currentRouteName}`, currentIndex);
     }
 
-    // --- GPS ORTUNG ---
     navigator.geolocation.watchPosition(pos => {
       const lat = pos.coords.latitude; const lng = pos.coords.longitude;
       if(map && document.getElementById('view-map').classList.contains('active-view')) { 
@@ -614,7 +599,6 @@
       return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)));
     }
 
-    // --- EXCEL IMP/EXP ---
     function exportCSV() {
       let csv = "Route;Adresse;Anzahl;Latitude;Longitude\n";
       for (let rName in routes) { routes[rName].forEach(stop => { csv += `${rName};${stop.adresse};${stop.anzahl};${stop.lat || ''};${stop.lng || ''}\n`; }); }
@@ -622,6 +606,7 @@
       const url = URL.createObjectURL(blob); const link = document.createElement("a"); link.setAttribute("href", url); link.setAttribute("download", "zeitungs_routen.csv"); document.body.appendChild(link); link.click(); document.body.removeChild(link);
     }
 
+    // GEPATCHT: Import-Funktion aktualisiert nun die Referenzen korrekt
     function importCSV(event) {
       const file = event.target.files[0]; if (!file) return;
       const reader = new FileReader();
@@ -637,7 +622,20 @@
             newRoutes[rName].push({ adresse: adr, anzahl: anz, lat: isNaN(lat) ? null : lat, lng: isNaN(lng) ? null : lng });
           }
         }
-        if (Object.keys(newRoutes).length > 0) { routes = newRoutes; saveData(); renderStartScreen(); alert("Tabelle erfolgreich geladen!"); }
+        if (Object.keys(newRoutes).length > 0) { 
+          routes = newRoutes; 
+          
+          // WICHTIG: Prüfen, ob die aktuelle Route im Upload überhaupt existiert, sonst auf die erste Route wechseln
+          if (!routes[currentRouteName]) {
+            currentRouteName = Object.keys(routes)[0];
+          }
+          route = routes[currentRouteName]; // Pointer aktualisieren!
+          currentIndex = parseInt(localStorage.getItem(`index_${currentRouteName}`)) || 0;
+          
+          saveData(); 
+          renderStartScreen(); 
+          alert("Tabelle erfolgreich geladen!"); 
+        }
         document.getElementById('csv-upload').value = ''; 
       };
       reader.readAsText(file);
