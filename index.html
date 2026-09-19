@@ -55,13 +55,15 @@
      .btn-list-top { position: absolute; top: 15px; right: 15px; font-size: 18px; background: rgba(0,0,0,0.8); border: none; color: white; padding: 10px 15px; border-radius: 12px; z-index: 1000; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
      .btn-back-start { position: absolute; top: 15px; left: 15px; z-index: 1000; background: rgba(0,0,0,0.8); color: white; border: none; padding: 10px 15px; border-radius: 12px; font-weight: bold; font-size: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
 
-     .info-area { flex-grow: 1; padding: 20px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: #121212; overflow-y: auto; }
-     .address { font-size: 28px; font-weight: bold; width: 100%; margin-bottom: 5px; }
+     .info-area { flex-grow: 1; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; text-align: center; background: #121212; overflow-y: auto; }
+     .address { font-size: 28px; font-weight: bold; width: 100%; margin-bottom: 0px; }
      .big-number { font-size: 90px; font-weight: bold; margin: 0; color: #00E676; line-height: 1.1; }
-     .label { font-size: 18px; color: #aaa; margin-bottom: auto; }
-     .btn-next { font-size: 22px; padding: 16px; background: #2962FF; color: white; border: none; border-radius: 15px; width: 100%; font-weight: bold; margin-bottom: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-     .btn-next:active { background: #1C44B2; }
-     #gps-status { font-size: 14px; color: #888; }
+     .label { font-size: 18px; color: #aaa; margin-bottom: 15px; font-weight: bold; }
+     
+     /* VERGRÖSSERTER MANUELL-BUTTON */
+     .btn-next { font-size: 28px; padding: 25px; background: #2962FF; color: white; border: none; border-radius: 20px; width: 100%; font-weight: bold; margin-bottom: 10px; box-shadow: 0 6px 15px rgba(0,0,0,0.6); }
+     .btn-next:active { background: #1C44B2; transform: scale(0.98); }
+     #gps-status { font-size: 14px; color: #888; margin-bottom: 5px; }
 
      /* --- 3. LISTEN ANSICHT (READ-ONLY) --- */
      #view-list { background: #1a1a1a; }
@@ -88,12 +90,11 @@
      .drag-handle { font-size: 26px; color: #888; padding: 5px 10px; cursor: grab; display: flex; align-items: center; }
      
      .edit-street { flex-grow: 1; background: #111; color: white; padding: 12px; font-size: 16px; min-width: 0; }
-     .edit-count { width: 60px !important; text-align: center; background: #111; color: white; font-weight: bold; font-size: 18px; padding: 12px; flex-shrink: 0; }
+     .edit-count { width: 55px !important; text-align: center; background: #111; color: white; font-weight: bold; font-size: 18px; padding: 12px; flex-shrink: 0; }
      #new-count { width: 70px !important; flex-shrink: 0; text-align: center; background: #111; color: white; }
      
-     .action-btns { display: flex; flex-direction: column; gap: 5px; }
-     .btn-gps-fix { background: #00E676; color: black; border: none; border-radius: 6px; width: 45px; height: 35px; font-size: 16px; font-weight: bold; }
-     .btn-del { background: #FF1744; color: white; border: none; border-radius: 6px; width: 45px; height: 35px; font-size: 16px; font-weight: bold; }
+     .action-btns { display: flex; flex-direction: row; gap: 5px; }
+     .btn-action-sm { border: none; border-radius: 6px; width: 38px; height: 38px; font-size: 16px; font-weight: bold; display: flex; justify-content: center; align-items: center; }
 
      .add-box { background: #222; padding: 15px; margin: 0 15px 15px 15px; border-radius: 12px; border: 2px dashed #444; }
      #edit-map { height: 250px; width: 100%; border-radius: 8px; margin-bottom: 10px; background: #333; z-index: 1; }
@@ -129,7 +130,10 @@
        .address { font-size: 60px; line-height: 1.2; margin-bottom: 20px; }
        .big-number { font-size: 240px; line-height: 1; }
        .label { font-size: 36px; margin-bottom: 40px; }
-       .btn-next { font-size: 45px; padding: 40px; border-radius: 25px; max-width: 800px; }
+       
+       /* DESKTOP BUTTON NOCH GRÖSSER */
+       .btn-next { font-size: 55px; padding: 60px; border-radius: 35px; max-width: 900px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+       
        #gps-status { font-size: 26px; margin-top: 25px; }
        
        .btn-list-top { font-size: 28px; padding: 20px 30px; border-radius: 18px; right: 30px; top: 30px; }
@@ -154,7 +158,7 @@
        .edit-item { padding: 25px; margin-bottom: 25px; border-radius: 18px; }
        .edit-street { font-size: 26px; padding: 20px; }
        .edit-count { font-size: 28px; width: 90px !important; padding: 20px; }
-       .btn-gps-fix, .btn-del { width: 70px; height: 60px; font-size: 28px; }
+       .btn-action-sm { width: 60px; height: 60px; font-size: 28px; }
 
        .add-box { margin: 0; padding: 40px; border-radius: 25px; position: sticky; top: 0; display: flex; flex-direction: column; background: #222; border-width: 4px; }
        .add-box strong { font-size: 32px; margin-bottom: 15px; }
@@ -242,6 +246,13 @@
           <input type="text" id="new-street" placeholder="Straße & Hsnr. (Wird autom. ausgefüllt)" style="background:#111; color:white; flex-grow:1; min-width:0;">
           <input type="number" id="new-count" value="1" min="1">
         </div>
+        
+        <!-- NEU: ZWISCHENSTATION CHECKBOX -->
+        <label style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px; background: #333; padding: 12px; border-radius: 8px; cursor: pointer;">
+          <input type="checkbox" id="is-zwischenstation" style="width: 20px; height: 20px; flex-shrink: 0;">
+          <span style="font-size: 16px; color:#FF9800; font-weight:bold;">📦 Als Zwischenstation (Zeitungen holen)</span>
+        </label>
+
         <button class="btn-add" onclick="addStop()">+ Hinzufügen</button>
         
         <button onclick="deleteCurrentRoute()" class="btn-del-route-desktop">🗑 Diese komplette Route löschen</button>
@@ -257,7 +268,10 @@
     let route = routes[currentRouteName];
     let currentIndex = parseInt(localStorage.getItem('myIndex')) || 0;
     
-    let map, userMarker, editMap, editMarker;
+    // GPS Track Historie
+    let walkPath = JSON.parse(localStorage.getItem(`walkPath_${currentRouteName}`)) || [];
+    
+    let map, userMarker, walkPolyline, editMap, editMarker;
     let houseMarkers = [];
     let hasArrived = false;
     let sortableInstance = null;
@@ -298,7 +312,7 @@
         btn.className = 'route-btn';
         let count = routes[rName].length;
         let savedIdx = parseInt(localStorage.getItem(`index_${rName}`)) || 0;
-        let statusText = savedIdx >= count && count > 0 ? `<span style="color:#00E676">Fertig! ✔</span>` : `${count} Häuser ➔`;
+        let statusText = savedIdx >= count && count > 0 ? `<span style="color:#00E676">Fertig! ✔</span>` : `${count} Stationen ➔`;
         btn.innerHTML = `<span>🗺️ ${rName}</span> <span class="route-count">${statusText}</span>`;
         btn.onclick = () => selectRoute(rName);
         menu.appendChild(btn);
@@ -311,6 +325,7 @@
       let savedIndex = localStorage.getItem(`index_${rName}`);
       currentIndex = savedIndex ? parseInt(savedIndex) : 0;
       if (currentIndex >= route.length && route.length > 0) currentIndex = 0;
+      walkPath = JSON.parse(localStorage.getItem(`walkPath_${currentRouteName}`)) || [];
       saveData(); initMap(); showView('view-map');
     }
 
@@ -323,18 +338,15 @@
       }
     }
 
-    // GEPATCHT: Lösch-Funktion aktualisiert nun die Referenzen korrekt
     function deleteCurrentRoute() {
       if (Object.keys(routes).length <= 1) { alert("Du musst mindestens eine Route behalten!"); return; }
       if (confirm(`Möchtest du "${currentRouteName}" wirklich löschen?`)) {
         delete routes[currentRouteName];
         localStorage.removeItem(`index_${currentRouteName}`);
-        
-        // WICHTIG: Die interne Speicherzuweisung auf die neue Route umschalten!
+        localStorage.removeItem(`walkPath_${currentRouteName}`);
         currentRouteName = Object.keys(routes)[0];
         route = routes[currentRouteName]; 
         currentIndex = parseInt(localStorage.getItem(`index_${currentRouteName}`)) || 0;
-        
         saveData(); 
         showView('view-start');
       }
@@ -345,14 +357,20 @@
       if(map) { map.remove(); }
       let startLat = 48.3615; let startLng = 8.5255;
       if(route[currentIndex] && route[currentIndex].lat) { startLat = route[currentIndex].lat; startLng = route[currentIndex].lng; }
+      else if (walkPath.length > 0) { startLat = walkPath[walkPath.length-1][0]; startLng = walkPath[walkPath.length-1][1]; }
       
       map = L.map('map').setView([startLat, startLng], 17);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
 
+      // GPS Track Linie zeichnen
+      if(walkPolyline) walkPolyline.remove();
+      walkPolyline = L.polyline(walkPath, {color: '#FF1744', weight: 5, opacity: 0.8}).addTo(map);
+
       houseMarkers = [];
       route.forEach((stop, index) => {
         if(stop.lat && stop.lng) {
-          let marker = L.circleMarker([stop.lat, stop.lng], { radius: 8 }).addTo(map);
+          let baseColor = stop.isZwischen ? '#FF9800' : 'gray';
+          let marker = L.circleMarker([stop.lat, stop.lng], { radius: stop.isZwischen ? 10 : 8, color: baseColor, fillColor: baseColor, fillOpacity: 0.8 }).addTo(map);
           houseMarkers.push({ index: index, marker: marker });
         }
       });
@@ -368,25 +386,71 @@
       }
       if (currentIndex >= route.length) { 
         document.getElementById('address').innerText = "Route beendet!"; document.getElementById('count').innerText = "🎉"; document.getElementById('gps-status').innerText = "";
+        document.getElementById('label').innerText = "Super gemacht!"; document.getElementById('address').style.color = "white";
         btnNext.innerText = "🏠 Zurück zum Menü"; btnNext.style.background = "#00E676"; btnNext.style.color = "black";
         btnNext.onclick = () => { showView('view-start'); }; return; 
       }
       
       btnNext.innerText = "Manuell Erledigt ➔"; btnNext.style.background = "#2962FF"; btnNext.style.color = "white"; btnNext.onclick = nextHouse;
+      
       let currentStop = route[currentIndex];
       document.getElementById('address').innerText = currentStop.adresse;
       document.getElementById('count').innerText = currentStop.anzahl;
       
+      // ZWISCHENSTATION STYLING
+      if (currentStop.isZwischen) {
+        document.getElementById('count').style.color = "#FF9800";
+        document.getElementById('label').innerText = "📦 ZWISCHENSTATION (Zeitungen holen)";
+        document.getElementById('address').style.color = "#FF9800";
+      } else {
+        document.getElementById('count').style.color = "#00E676";
+        document.getElementById('label').innerText = "Zeitungen";
+        document.getElementById('address').style.color = "white";
+      }
+      
       houseMarkers.forEach(hm => {
+        let stopInfo = route[hm.index];
         if (hm.index < currentIndex) hm.marker.setStyle({color: '#00E676', fillColor: '#00E676', radius: 6}); 
-        else if (hm.index === currentIndex) hm.marker.setStyle({color: '#FF1744', fillColor: '#FF1744', radius: 14}); 
-        else hm.marker.setStyle({color: 'gray', fillColor: 'gray', radius: 8}); 
+        else if (hm.index === currentIndex) hm.marker.setStyle({color: stopInfo.isZwischen ? '#FF9800' : '#FF1744', fillColor: stopInfo.isZwischen ? '#FF9800' : '#FF1744', radius: 14}); 
+        else hm.marker.setStyle({color: stopInfo.isZwischen ? '#FF9800' : 'gray', fillColor: stopInfo.isZwischen ? '#FF9800' : 'gray', radius: stopInfo.isZwischen ? 10 : 8}); 
       });
       if(currentStop.lat && map) { map.panTo([currentStop.lat, currentStop.lng]); }
     }
 
-    function nextHouse() { if (currentIndex < route.length) { currentIndex++; hasArrived = false; saveData(); updateMainUI(); } }
-    function resetTour() { if(confirm("Route wieder beim ersten Haus beginnen?")) { currentIndex = 0; saveData(); alert("Zurückgesetzt!"); showView('view-map'); } }
+    // NEU: Vibrations-Muster
+    function triggerVibration() {
+      if (currentIndex >= route.length || !navigator.vibrate) return;
+      let count = route[currentIndex].anzahl;
+      
+      // 1x Lang vibrieren (Neues Haus erreicht), kurz Pause, dann 1x kurz für jede Zeitung
+      let pattern = [600, 400]; 
+      for(let i=0; i<count; i++) {
+        pattern.push(200, 250); 
+      }
+      navigator.vibrate(pattern);
+    }
+
+    function nextHouse() { 
+      if (currentIndex < route.length) { 
+        currentIndex++; 
+        hasArrived = false; 
+        saveData(); 
+        updateMainUI(); 
+        triggerVibration(); // Aufruf beim Wechsel
+      } 
+    }
+
+    function resetTour() { 
+      if(confirm("Route wieder beim ersten Haus beginnen und GPS-Linie löschen?")) { 
+        currentIndex = 0; 
+        walkPath = [];
+        localStorage.removeItem(`walkPath_${currentRouteName}`);
+        if(walkPolyline) walkPolyline.setLatLngs([]);
+        saveData(); 
+        alert("Zurückgesetzt!"); 
+        showView('view-map'); 
+      } 
+    }
 
     // --- 3. LISTEN ANSICHT (Nur Lesen) ---
     function openListView() {
@@ -397,8 +461,10 @@
       route.forEach((stop, index) => {
         const li = document.createElement('li'); li.className = 'clean-item';
         if (index === currentIndex) li.classList.add('current-stop');
-        let gpsText = stop.lat ? "📍 GPS vorhanden" : "⚠️ Kein GPS";
-        li.innerHTML = `<div style="min-width:0; flex-grow:1; padding-right:10px;"><div class="street">${stop.adresse}</div><div class="details">Status: ${index < currentIndex ? 'Erledigt ✔' : (index === currentIndex ? 'Nächstes Ziel' : 'Ausstehend')} | ${gpsText}</div></div><div class="count-badge">${stop.anzahl}</div>`;
+        let gpsText = stop.lat ? "📍 GPS" : "⚠️ Kein GPS";
+        let titleHtml = stop.isZwischen ? `<span style="color:#FF9800;">📦 ${stop.adresse}</span>` : stop.adresse;
+        
+        li.innerHTML = `<div style="min-width:0; flex-grow:1; padding-right:10px;"><div class="street">${titleHtml}</div><div class="details">Status: ${index < currentIndex ? 'Erledigt ✔' : (index === currentIndex ? 'Nächstes Ziel' : 'Ausstehend')} | ${gpsText}</div></div><div class="count-badge" style="background:${stop.isZwischen ? '#FF9800' : '#2962FF'}">${stop.anzahl}</div>`;
         listElement.appendChild(li);
       });
       showView('view-list');
@@ -417,15 +483,17 @@
       
       route.forEach((stop, index) => {
         const li = document.createElement('li'); li.className = 'edit-item';
-        let pinColor = stop.lat ? "#00E676" : "#FF9800"; 
+        let pinColor = stop.lat ? "#00E676" : "#444"; 
+        let boxColor = stop.isZwischen ? "#FF9800" : "#444";
         
         li.innerHTML = `
           <div class="drag-handle">☰</div>
-          <input type="text" class="edit-street" value="${stop.adresse}" onchange="updateStop(${index}, 'adresse', this.value)">
+          <input type="text" class="edit-street" value="${stop.adresse}" onchange="updateStop(${index}, 'adresse', this.value)" style="color: ${stop.isZwischen ? '#FF9800' : 'white'}; font-weight: ${stop.isZwischen ? 'bold' : 'normal'};">
           <input type="number" class="edit-count" value="${stop.anzahl}" min="1" onchange="updateStop(${index}, 'anzahl', this.value)">
           <div class="action-btns">
-            <button class="btn-gps-fix" style="background:${pinColor};" onclick="fixGPS(${index})" title="GPS Punkt auf Karte neu setzen">📍</button>
-            <button class="btn-del" onclick="deleteStop(${index})">X</button>
+            <button class="btn-action-sm" style="background:${pinColor}; color:black;" onclick="fixGPS(${index})" title="GPS Punkt auf Karte neu setzen">📍</button>
+            <button class="btn-action-sm" style="background:${boxColor}; color:white; border: 1px solid #FF9800;" onclick="toggleZwischen(${index})" title="Als Zwischenstation markieren">📦</button>
+            <button class="btn-action-sm" style="background:#FF1744; color:white;" onclick="deleteStop(${index})">X</button>
           </div>
         `;
         container.appendChild(li);
@@ -441,6 +509,12 @@
           saveData(); setTimeout(() => { renderEditList(); }, 10);
         }
       });
+    }
+
+    function toggleZwischen(index) {
+      route[index].isZwischen = !route[index].isZwischen;
+      saveData();
+      renderEditList();
     }
 
     function initEditMap() {
@@ -502,7 +576,7 @@
       fixingIndex = index;
       let adrName = route[index].adresse;
       document.getElementById('map-add-box').scrollIntoView({ behavior: 'smooth' });
-      document.getElementById('edit-map-instruction').innerHTML = `<span style="color:#FF9800; font-size:18px;">Tippe jetzt auf der Karte exakt auf das Haus für:<br><b>${adrName}</b></span>`;
+      document.getElementById('edit-map-instruction').innerHTML = `<span style="color:#FF9800; font-size:18px;">Tippe jetzt auf der Karte exakt auf den Ort für:<br><b>${adrName}</b></span>`;
       
       if(route[index].lat && editMap) {
         editMap.setView([route[index].lat, route[index].lng], 19);
@@ -516,8 +590,11 @@
     function addStop() {
       const streetInput = document.getElementById('new-street');
       const countInput = document.getElementById('new-count');
+      const isZwischenInput = document.getElementById('is-zwischenstation');
+      
       const st = streetInput.value.trim();
       const ct = parseInt(countInput.value);
+      const isZwischen = isZwischenInput.checked;
       
       const exactLat = parseFloat(streetInput.dataset.lat);
       const exactLng = parseFloat(streetInput.dataset.lng);
@@ -526,13 +603,14 @@
         const newIndex = route.length;
         
         if (!isNaN(exactLat) && !isNaN(exactLng)) {
-          route.push({ adresse: st, anzahl: ct, lat: exactLat, lng: exactLng });
+          route.push({ adresse: st, anzahl: ct, lat: exactLat, lng: exactLng, isZwischen: isZwischen });
         } else {
-          route.push({ adresse: st, anzahl: ct, lat: null, lng: null });
+          route.push({ adresse: st, anzahl: ct, lat: null, lng: null, isZwischen: isZwischen });
           fetchGPS(newIndex, st);
         }
         
         streetInput.value = '';
+        isZwischenInput.checked = false;
         delete streetInput.dataset.lat;
         delete streetInput.dataset.lng;
         if(editMarker) { editMarker.remove(); editMarker = null; }
@@ -574,23 +652,33 @@
       localStorage.setItem('myRoutes', JSON.stringify(routes));
       localStorage.setItem('myCurrentRouteName', currentRouteName);
       localStorage.setItem(`index_${currentRouteName}`, currentIndex);
+      localStorage.setItem(`walkPath_${currentRouteName}`, JSON.stringify(walkPath));
     }
 
+    // GPS TRACKING FÜR LINIE UND AUTO-WEITER
     navigator.geolocation.watchPosition(pos => {
       const lat = pos.coords.latitude; const lng = pos.coords.longitude;
+      
       if(map && document.getElementById('view-map').classList.contains('active-view')) { 
         if(!userMarker) userMarker = L.circleMarker([lat, lng], {color: '#2962FF', fillColor: '#2962FF', fillOpacity: 1, radius: 8}).addTo(map); 
         else userMarker.setLatLng([lat, lng]); 
+        
+        // Tracke den gelaufenen Weg
+        walkPath.push([lat, lng]);
+        saveData();
+        if(!walkPolyline) walkPolyline = L.polyline(walkPath, {color: '#FF1744', weight: 5, opacity: 0.8}).addTo(map);
+        else walkPolyline.setLatLngs(walkPath);
       }
+      
       if(currentIndex >= route.length || route.length === 0) return;
       const target = route[currentIndex];
       const statusEl = document.getElementById('gps-status');
       
       if(target.lat && target.lng) {
         const dist = getDistance(lat, lng, target.lat, target.lng);
-        if(statusEl) statusEl.innerText = `Entfernung: ${Math.round(dist)}m (Auto-Umschaltung aktiv)`;
+        if(statusEl) statusEl.innerText = `Entfernung: ${Math.round(dist)}m (Auto-Wechsel aktiv)`;
         if (dist < 15) { hasArrived = true; } else if (hasArrived && dist > 25) { nextHouse(); }
-      } else { if(statusEl) statusEl.innerText = `Kein GPS für dieses Haus`; }
+      } else { if(statusEl) statusEl.innerText = `Kein GPS für diesen Stopp hinterlegt`; }
     }, err => { if(document.getElementById('gps-status')) document.getElementById('gps-status').innerText = "GPS Fehler. Ortung aktiv?"; }, { enableHighAccuracy: true });
 
     function getDistance(lat1, lon1, lat2, lon2) {
@@ -600,13 +688,16 @@
     }
 
     function exportCSV() {
-      let csv = "Route;Adresse;Anzahl;Latitude;Longitude\n";
-      for (let rName in routes) { routes[rName].forEach(stop => { csv += `${rName};${stop.adresse};${stop.anzahl};${stop.lat || ''};${stop.lng || ''}\n`; }); }
+      let csv = "Route;Adresse;Anzahl;Latitude;Longitude;Zwischenstation\n";
+      for (let rName in routes) { 
+        routes[rName].forEach(stop => { 
+          csv += `${rName};${stop.adresse};${stop.anzahl};${stop.lat || ''};${stop.lng || ''};${stop.isZwischen ? 'Ja' : 'Nein'}\n`; 
+        }); 
+      }
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob); const link = document.createElement("a"); link.setAttribute("href", url); link.setAttribute("download", "zeitungs_routen.csv"); document.body.appendChild(link); link.click(); document.body.removeChild(link);
     }
 
-    // GEPATCHT: Import-Funktion aktualisiert nun die Referenzen korrekt
     function importCSV(event) {
       const file = event.target.files[0]; if (!file) return;
       const reader = new FileReader();
@@ -618,23 +709,17 @@
           if (parts.length >= 3) {
             let rName = parts[0].trim(); let adr = parts[1].trim(); let anz = parseInt(parts[2].trim());
             let lat = parts[3] ? parseFloat(parts[3]) : null; let lng = parts[4] ? parseFloat(parts[4]) : null;
+            let isZ = parts[5] && parts[5].trim() === 'Ja' ? true : false;
             if (!newRoutes[rName]) newRoutes[rName] = [];
-            newRoutes[rName].push({ adresse: adr, anzahl: anz, lat: isNaN(lat) ? null : lat, lng: isNaN(lng) ? null : lng });
+            newRoutes[rName].push({ adresse: adr, anzahl: anz, lat: isNaN(lat) ? null : lat, lng: isNaN(lng) ? null : lng, isZwischen: isZ });
           }
         }
         if (Object.keys(newRoutes).length > 0) { 
           routes = newRoutes; 
-          
-          // WICHTIG: Prüfen, ob die aktuelle Route im Upload überhaupt existiert, sonst auf die erste Route wechseln
-          if (!routes[currentRouteName]) {
-            currentRouteName = Object.keys(routes)[0];
-          }
-          route = routes[currentRouteName]; // Pointer aktualisieren!
+          if (!routes[currentRouteName]) { currentRouteName = Object.keys(routes)[0]; }
+          route = routes[currentRouteName];
           currentIndex = parseInt(localStorage.getItem(`index_${currentRouteName}`)) || 0;
-          
-          saveData(); 
-          renderStartScreen(); 
-          alert("Tabelle erfolgreich geladen!"); 
+          saveData(); renderStartScreen(); alert("Tabelle erfolgreich geladen!"); 
         }
         document.getElementById('csv-upload').value = ''; 
       };
