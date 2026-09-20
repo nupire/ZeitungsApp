@@ -26,43 +26,54 @@
      ::-webkit-scrollbar-thumb { background: #555; border-radius: 10px; }
      ::-webkit-scrollbar-thumb:hover { background: #888; }
 
-     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #121212; color: white; margin: 0; padding: 0; position: fixed; inset: 0; display: flex; flex-direction: column; overflow-x: hidden; }
+     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #121212; color: white; margin: 0; padding: 0; position: fixed; inset: 0; display: flex; flex-direction: column; overflow: hidden; }
      button { cursor: pointer; font-family: inherit; }
-     input { font-size: 16px; padding: 12px; border-radius: 8px; border: none; width: 100%; font-family: inherit; }
+     input, select { font-size: 16px; padding: 12px; border-radius: 8px; border: none; width: 100%; font-family: inherit; }
      
-     .view { display: none; flex-direction: column; height: 100%; width: 100%; position: relative; overflow-x: hidden; }
+     .view { display: none; flex-direction: column; height: 100%; width: 100%; position: relative; overflow: hidden; }
      .active-view { display: flex; }
      
      .leaflet-container { background: #121212 !important; }
 
+     /* --- HAMBURGER SLIDE-IN MENÜ --- */
+     #slide-menu { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 3000; justify-content: flex-end; }
+     #slide-menu.open { display: flex; }
+     .slide-content { width: 340px; max-width: 85%; height: 100%; background: #1e1e1e; padding: 25px; display: flex; flex-direction: column; gap: 15px; box-shadow: -5px 0 25px rgba(0,0,0,0.8); overflow-y: auto; }
+     
+     .menu-section-title { margin: 15px 0 5px 0; color: #888; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #333; padding-bottom: 5px; }
+     .btn-menu-action { background: #222; color: white; border: 1px solid #444; padding: 16px; border-radius: 12px; font-size: 16px; font-weight: bold; width: 100%; text-align: left; display: flex; align-items: center; gap: 10px; }
+     .btn-menu-action:active { background: #333; }
+     .btn-primary { background: #2962FF; border: none; }
+     .btn-danger { background: #FF1744; border: none; }
+     .btn-record-menu { background: #FF1744; border: none; color: white; text-align: center; justify-content: center; font-size: 18px; padding: 18px; }
+
      /* --- 1. STARTSEITE --- */
      #view-start { padding: 20px; overflow-y: auto; background: #1a1a1a; }
      .start-container { width: 100%; max-width: 1400px; display: flex; flex-direction: column; gap: 20px; margin: 0 auto; }
-     .start-title { font-size: 32px; font-weight: bold; margin-bottom: 10px; margin-top: 10px; color: #00E676; text-align: center; }
-     .route-list-container { display: flex; flex-direction: column; gap: 15px; width: 100%; }
-     .route-btn { background: #222; color: white; border: 2px solid #333; padding: 20px; border-radius: 15px; font-size: 20px; width: 100%; text-align: left; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.3); margin-bottom: 15px; }
+     .start-title { font-size: 32px; font-weight: bold; margin: 10px 0; color: #00E676; text-align: center; }
+     .route-list-container { display: flex; flex-direction: column; gap: 15px; width: 100%; margin-top: 10px; }
+     .route-btn { background: #222; color: white; border: 2px solid #333; padding: 25px 20px; border-radius: 15px; font-size: 20px; width: 100%; text-align: left; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
      .route-btn:active { background: #333; }
      .route-count { font-size: 16px; color: #888; }
-     .btn-new-route { background: #2962FF; color: white; border: none; padding: 18px; border-radius: 12px; font-size: 18px; width: 100%; font-weight: bold; margin-top: 10px; }
-     .import-export-box { width: 100%; background: #222; padding: 20px; border-radius: 12px; }
-     .btn-export { background: #00897B; color: white; padding: 14px; border-radius: 8px; border: none; font-weight: bold; width: 100%; margin-bottom: 12px; font-size: 16px; }
-     .btn-import { background: #8E24AA; color: white; padding: 14px; border-radius: 8px; border: none; font-weight: bold; width: 100%; font-size: 16px; }
-
+     
      /* --- 2. KARTE (AUSTRAGEN) --- */
      #view-map { position: relative; } 
      #map { height: 45%; flex-shrink: 0; width: 100%; z-index: 1; position: relative; }
      
-     .btn-list-top { position: absolute; top: 15px; right: 15px; font-size: 18px; background: rgba(0,0,0,0.8); border: none; color: white; padding: 10px 15px; border-radius: 12px; z-index: 1000; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-     .btn-back-start { position: absolute; top: 15px; left: 15px; z-index: 1000; background: rgba(0,0,0,0.8); color: white; border: none; padding: 10px 15px; border-radius: 12px; font-weight: bold; font-size: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+     .btn-list-top { position: absolute; top: 15px; right: 15px; font-size: 18px; background: rgba(0,0,0,0.85); border: none; color: white; padding: 10px 15px; border-radius: 12px; z-index: 1000; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+     .btn-back-start { position: absolute; top: 15px; left: 15px; z-index: 1000; background: rgba(0,0,0,0.85); color: white; border: none; padding: 10px 15px; border-radius: 12px; font-weight: bold; font-size: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
 
-     .info-area { flex-grow: 1; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; text-align: center; background: #121212; overflow-y: auto; }
-     .address { font-size: 28px; font-weight: bold; width: 100%; margin-bottom: 0px; }
-     .big-number { font-size: 90px; font-weight: bold; margin: 0; color: #00E676; line-height: 1.1; }
-     .label { font-size: 18px; color: #aaa; margin-bottom: 15px; font-weight: bold; }
+     /* Unklickbarer Indikator, damit man weiß, dass Tracking läuft */
+     #rec-indicator { display: none; position: absolute; top: 15px; left: 50%; transform: translateX(-50%); background: rgba(255, 23, 68, 0.9); color: white; padding: 8px 15px; border-radius: 20px; font-weight: bold; font-size: 16px; z-index: 1000; pointer-events: none; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+
+     .info-area { flex-grow: 1; padding: 15px 20px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; text-align: center; background: #121212; overflow: hidden; }
+     .address { font-size: 26px; font-weight: bold; width: 100%; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+     .big-number { font-size: 80px; font-weight: bold; margin: 0; color: #00E676; line-height: 1; }
+     .label { font-size: 18px; color: #aaa; margin-bottom: 10px; font-weight: bold; }
      
-     .btn-next { font-size: 28px; padding: 25px; background: #2962FF; color: white; border: none; border-radius: 20px; width: 100%; font-weight: bold; margin-bottom: 10px; box-shadow: 0 6px 15px rgba(0,0,0,0.6); }
+     .btn-next { font-size: 24px; padding: 22px; background: #2962FF; color: white; border: none; border-radius: 16px; width: 100%; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.6); }
      .btn-next:active { background: #1C44B2; transform: scale(0.98); }
-     #gps-status { font-size: 14px; color: #888; margin-bottom: 5px; }
+     #gps-status { font-size: 13px; color: #888; margin: 0; padding-top: 10px; }
 
      /* --- 3. LISTEN ANSICHT (READ-ONLY) --- */
      #view-list { background: #1a1a1a; }
@@ -77,13 +88,13 @@
      .clean-item .count-badge { background: #2962FF; color: white; font-size: 20px; font-weight: bold; padding: 5px 15px; border-radius: 20px; }
      .current-stop { border-left: 5px solid #00E676; }
 
-     .bottom-bar { padding: 15px; background: #222; border-top: 1px solid #333; flex-shrink: 0; }
-     .btn-edit-mode { width: 100%; padding: 15px; font-size: 18px; background: #FF9800; color: black; font-weight: bold; border: none; border-radius: 10px; }
+     .bottom-bar { padding: 15px; background: #222; border-top: 1px solid #333; flex-shrink: 0; display: flex; gap: 10px; }
+     .btn-edit-mode { flex: 1; padding: 15px; font-size: 18px; background: #FF9800; color: black; font-weight: bold; border: none; border-radius: 10px; }
      
      /* --- 4. BEARBEITUNGS ANSICHT --- */
      #view-edit { background: #1a1a1a; }
-     .edit-scroll-area { flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; overflow-x: hidden; }
-     .edit-list { list-style: none; padding: 15px; margin: 0; }
+     .edit-scroll-area { flex-grow: 1; overflow: hidden; display: flex; flex-direction: column; width: 100%; height: 100%; }
+     .edit-list { list-style: none; padding: 15px; margin: 0; overflow-y: auto; flex-grow: 1; }
      
      .edit-item { background: #2a2a2a; padding: 10px; margin-bottom: 10px; border-radius: 10px; display: flex; align-items: center; gap: 8px; border: 1px solid #444; }
      .drag-handle { font-size: 26px; color: #888; padding: 5px 10px; cursor: grab; display: flex; align-items: center; }
@@ -95,14 +106,13 @@
      .action-btns { display: flex; flex-direction: row; gap: 5px; }
      .btn-action-sm { border: none; border-radius: 6px; width: 38px; height: 38px; font-size: 16px; font-weight: bold; display: flex; justify-content: center; align-items: center; }
 
-     .add-box { background: #222; padding: 15px; margin: 0 15px 15px 15px; border-radius: 12px; border: 2px dashed #444; }
-     #edit-map { height: 250px; width: 100%; border-radius: 8px; margin-bottom: 10px; background: #333; z-index: 1; }
-     #edit-map-instruction { font-size: 14px; color: #aaa; margin-bottom: 10px; text-align: center; }
+     .add-box { background: #222; padding: 15px; margin: 15px; border-radius: 24px; border: 1px solid #444; box-shadow: 0 8px 25px rgba(0,0,0,0.6); flex-shrink: 0; }
+     #edit-map { height: 180px; width: 100%; border-radius: 16px; margin-bottom: 10px; background: #333; z-index: 1; box-shadow: inset 0 2px 6px rgba(0,0,0,0.5); }
+     #edit-map-instruction { font-size: 13px; color: #aaa; margin-bottom: 8px; text-align: center; }
      
      .add-row { display: flex; gap: 10px; margin-bottom: 10px; }
-     .btn-add { font-size: 18px; padding: 12px; background: #2962FF; color: white; border: none; border-radius: 8px; width: 100%; font-weight: bold; }
-     .btn-save-edit { background: #00E676; color: black; font-weight: bold; padding: 10px 15px; border-radius: 8px; border: none; font-size: 16px; }
-     .btn-del-route-desktop { width: 100%; margin-top: 20px; padding: 15px; background: #FF1744; color: white; border: none; border-radius: 10px; font-weight:bold; font-size: 16px; }
+     .btn-add { font-size: 18px; padding: 12px; background: #2962FF; color: white; border: none; border-radius: 12px; width: 100%; font-weight: bold; }
+     .btn-save-edit { background: #00E676; color: black; font-weight: bold; padding: 8px 16px; border-radius: 8px; border: none; font-size: 16px; }
 
      /* --- 5. HISTORIE (TRACKS) --- */
      #view-tracks { background: #1a1a1a; }
@@ -115,69 +125,57 @@
         ========================================================= */
      @media (min-width: 900px) {
        #view-start { padding: 50px; justify-content: center; }
-       .start-container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1800px; margin: auto; }
-       .start-header-full { grid-column: 1 / -1; text-align: center; margin-bottom: 40px; }
+       .start-container { align-items: center; max-width: 1200px; margin: auto; }
        .start-title { font-size: 70px; margin: 0; }
        
        .route-btn { padding: 35px 40px; font-size: 32px; border-radius: 20px; margin-bottom: 25px; }
        .route-count { font-size: 26px; }
-       .btn-new-route { padding: 30px; font-size: 28px; border-radius: 18px; margin-top: 20px; }
-       
-       .import-export-box { padding: 45px; border-radius: 25px; }
-       .import-export-box h3 { font-size: 32px !important; margin-bottom: 20px !important; }
-       .import-export-box p { font-size: 22px !important; margin-bottom: 35px !important; }
-       .btn-export, .btn-import { padding: 26px; font-size: 26px; border-radius: 16px; margin-bottom: 22px; }
 
        #view-map { flex-direction: row; }
        #map { height: 100%; width: 50%; order: 1; }
-       .info-area { width: 50%; height: 100%; order: 2; padding: 80px; justify-content: center; gap: 30px; }
+       .info-area { width: 50%; height: 100%; order: 2; padding: 60px; justify-content: center; gap: 25px; }
        
-       .address { font-size: 60px; line-height: 1.2; margin-bottom: 20px; }
-       .big-number { font-size: 240px; line-height: 1; }
-       .label { font-size: 36px; margin-bottom: 40px; }
+       .address { font-size: 54px; line-height: 1.2; white-space: normal; overflow: visible; }
+       .big-number { font-size: 200px; line-height: 1; }
+       .label { font-size: 32px; margin-bottom: 20px; }
        
-       .btn-next { font-size: 55px; padding: 60px; border-radius: 35px; max-width: 900px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
-       #btn-record { font-size: 36px !important; padding: 30px !important; border-radius: 20px !important; }
-       #record-timer { font-size: 36px !important; padding: 30px !important; border-radius: 20px !important; min-width: 150px !important; }
+       .btn-next { font-size: 40px; padding: 45px; border-radius: 25px; max-width: 800px; box-shadow: 0 8px 25px rgba(0,0,0,0.6); }
        
-       #gps-status { font-size: 26px; margin-top: 25px; }
+       #gps-status { font-size: 24px; margin-top: 15px; }
+       #rec-indicator { font-size: 24px; padding: 15px 30px; border-radius: 30px; }
        
-       .btn-list-top { font-size: 28px; padding: 20px 30px; border-radius: 18px; right: 30px; top: 30px; }
-       .btn-back-start { font-size: 28px; padding: 20px 30px; border-radius: 18px; left: 30px; top: 30px; }
+       .btn-list-top, .btn-back-start { font-size: 24px; padding: 18px 25px; border-radius: 16px; top: 30px; }
+       .btn-list-top { right: 30px; } .btn-back-start { left: 30px; }
 
-       .clean-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)); gap: 30px; max-width: 1800px; padding: 40px; margin: 0 auto; width: 100%; align-content: start; }
-       .clean-item { padding: 35px; border-radius: 20px; margin-bottom: 0; }
-       .clean-item .street { font-size: 32px; }
-       .clean-item .details { font-size: 22px; margin-top: 12px; }
-       .clean-item .count-badge { font-size: 32px; padding: 12px 30px; border-radius: 35px; }
+       .clean-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(450px, 1fr)); gap: 25px; max-width: 1800px; padding: 40px; margin: 0 auto; width: 100%; align-content: start; }
+       .clean-item { padding: 30px; border-radius: 18px; margin-bottom: 0; }
+       .clean-item .street { font-size: 28px; }
+       .clean-item .details { font-size: 20px; margin-top: 10px; }
+       .clean-item .count-badge { font-size: 28px; padding: 10px 25px; border-radius: 30px; }
        
-       .header-bar { padding: 35px 50px; }
-       .header-title { font-size: 40px; }
-       .btn-back { font-size: 28px; padding: 18px 35px; }
+       .header-bar { padding: 30px 50px; }
+       .header-title { font-size: 36px; }
+       .btn-back { font-size: 24px; padding: 15px 30px; }
 
-       .bottom-bar { max-width: 1800px; margin: 0 auto; width: 100%; padding: 35px 50px; display: flex; gap: 40px; border-radius: 25px 25px 0 0; }
-       .bottom-bar .btn-edit-mode { font-size: 32px; padding: 30px; border-radius: 18px; flex: 2; }
-       .bottom-bar .btn-back { font-size: 28px; padding: 30px; border-radius: 18px; flex: 1; margin-top: 0 !important; }
+       .bottom-bar { max-width: 1800px; margin: 0 auto; width: 100%; padding: 25px 50px; gap: 30px; border-radius: 20px 20px 0 0; }
+       .bottom-bar .btn-edit-mode { font-size: 28px; padding: 22px; border-radius: 16px; }
 
-       .edit-scroll-area { display: grid; grid-template-columns: 45% 55%; gap: 50px; max-width: 1800px; margin: 0 auto; width: 100%; padding: 50px; box-sizing: border-box; align-items: start; }
-       .edit-list { padding: 0; overflow-y: auto; max-height: calc(100vh - 200px); padding-right: 20px; }
-       .edit-item { padding: 25px; margin-bottom: 25px; border-radius: 18px; }
-       .edit-street { font-size: 26px; padding: 20px; }
-       .edit-count { font-size: 28px; width: 90px !important; padding: 20px; }
-       .btn-action-sm { width: 60px; height: 60px; font-size: 28px; }
+       .edit-scroll-area { display: grid; grid-template-columns: 50% 50%; gap: 40px; max-width: 1800px; margin: 0 auto; width: 100%; padding: 40px; align-items: start; }
+       .edit-list { padding: 0; max-height: calc(100vh - 160px); padding-right: 15px; }
+       .edit-item { padding: 20px; margin-bottom: 20px; border-radius: 16px; }
+       .edit-street { font-size: 22px; padding: 16px; }
+       .edit-count { font-size: 24px; width: 80px !important; padding: 16px; }
+       .btn-action-sm { width: 50px; height: 50px; font-size: 24px; }
 
-       .add-box { margin: 0; padding: 40px; border-radius: 25px; position: sticky; top: 0; display: flex; flex-direction: column; background: #222; border-width: 4px; }
-       .add-box strong { font-size: 32px; margin-bottom: 15px; }
-       #edit-map-instruction { font-size: 24px; margin-bottom: 20px; }
-       #edit-map { height: 50vh; min-height: 600px; border-radius: 20px; margin-bottom: 30px; }
-       .add-row { gap: 20px; margin-bottom: 20px; }
-       .add-row input { font-size: 26px; padding: 25px; }
-       #new-count { width: 130px !important; }
-       .btn-add { font-size: 32px; padding: 25px; border-radius: 18px; }
-       .btn-save-edit { font-size: 28px; padding: 18px 35px; }
-       .btn-del-route-desktop { font-size: 24px; padding: 25px; border-radius: 16px; margin-top: 40px; }
+       .add-box { margin: 0; padding: 35px; border-radius: 28px; position: sticky; top: 0; border-width: 2px; }
+       #edit-map-instruction { font-size: 20px; margin-bottom: 15px; }
+       #edit-map { height: 38vh; min-height: 350px; border-radius: 20px; margin-bottom: 25px; }
+       .add-row { gap: 15px; margin-bottom: 15px; }
+       .add-row input { font-size: 22px; padding: 20px; }
+       #new-count { width: 110px !important; }
+       .btn-add { font-size: 28px; padding: 20px; border-radius: 16px; }
+       .btn-save-edit { font-size: 24px; padding: 15px 30px; }
 
-       /* HISTORIE DESKTOP */
        .track-split { flex-direction: row; }
        #track-list { width: 40%; height: 100%; }
        #track-map { width: 60%; height: 100%; }
@@ -186,25 +184,46 @@
 </head>
 <body>
 
+  <!-- HAMBURGER SLIDE-IN MENÜ -->
+  <div id="slide-menu" onclick="toggleSlideMenu(event)">
+    <div class="slide-content" onclick="event.stopPropagation()">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h3 style="margin:0; font-size:24px; color:#00E676;">Menü</h3>
+        <button onclick="toggleSlideMenu()" style="background:none; border:none; color:white; font-size:30px; padding:0 5px;">✕</button>
+      </div>
+
+      <!-- Bereich: Allgemein -->
+      <h4 class="menu-section-title">Allgemein</h4>
+      <button class="btn-menu-action btn-primary" onclick="createNewRoute(); toggleSlideMenu();">➕ Neue Route erstellen</button>
+      <button class="btn-menu-action" style="background:#444;" onclick="openTracksView(); toggleSlideMenu();">📍 GPS-Strecken ansehen</button>
+
+      <!-- Bereich: GPS Tracking (Hintergrund) -->
+      <h4 class="menu-section-title">Aktivität aufzeichnen</h4>
+      <button id="menu-btn-record" class="btn-menu-action btn-record-menu" onclick="toggleMenuRecording()">⏺ GPS-Tracking starten</button>
+
+      <!-- Bereich: Routen Verwaltung -->
+      <h4 class="menu-section-title">Route löschen</h4>
+      <select id="delete-route-select" style="background:#222; color:white; border:1px solid #444; padding:15px; border-radius:10px; font-size: 16px;"></select>
+      <button class="btn-menu-action btn-danger" onclick="deleteSelectedRouteFromMenu(); toggleSlideMenu();" style="justify-content:center;">🗑 Ausgewählte Route löschen</button>
+      
+      <!-- Bereich: Daten & Backup -->
+      <h4 class="menu-section-title">Daten & Backup</h4>
+      <button class="btn-menu-action" style="background:#00897B;" onclick="exportCSV(); toggleSlideMenu();">⬇️ Tabelle herunterladen (Export)</button>
+      <button class="btn-menu-action" style="background:#8E24AA;" onclick="document.getElementById('csv-upload').click(); toggleSlideMenu();">⬆️ Tabelle hochladen (Import)</button>
+      <!-- Versteckter File-Input fürs Backup -->
+      <input type="file" id="csv-upload" accept=".csv" style="display:none" onchange="importCSV(event)">
+    </div>
+  </div>
+
   <!-- 1. STARTSEITE -->
   <div id="view-start" class="view active-view">
     <div class="start-container">
-      <div class="start-header-full">
-        <h1 class="start-title">📰 Zeitungs-Navi</h1>
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h1 class="start-title" style="margin:0; flex-grow:1; text-align:center;">📰 Zeitungs-Navi</h1>
+        <button onclick="toggleSlideMenu()" style="background:#222; border:2px solid #333; color:white; font-size:24px; padding:12px 18px; border-radius:12px;">☰</button>
       </div>
-      <div>
-        <h3 style="margin-top:0; color:#aaa; font-size:22px;">Routen-Auswahl</h3>
-        <div id="route-menu" class="route-list-container"></div>
-        <button class="btn-new-route" onclick="createNewRoute()">+ Neue Route erstellen</button>
-        <button class="btn-new-route" style="background:#FF9800; color:black; margin-top:15px;" onclick="openTracksView()">🗺️ Gespeicherte Routen (Historie)</button>
-      </div>
-      <div class="import-export-box">
-        <h3 style="margin-top:0; color:#aaa;">Daten & Backup</h3>
-        <p style="color:#888;">Verwalte deine Routen bequem per Excel/CSV am Computer.</p>
-        <button class="btn-export" onclick="exportCSV()">⬇️ Tabelle herunterladen</button>
-        <button class="btn-import" onclick="document.getElementById('csv-upload').click()">⬆️ Tabelle hochladen</button>
-        <input type="file" id="csv-upload" accept=".csv" style="display:none" onchange="importCSV(event)">
-      </div>
+      <div style="text-align:center; color:#aaa; font-size:18px; margin-bottom:10px;">Bitte wähle eine Route, um zu starten:</div>
+      <div id="route-menu" class="route-list-container"></div>
     </div>
   </div>
 
@@ -212,20 +231,19 @@
   <div id="view-map" class="view">
     <button class="btn-back-start" onclick="showView('view-start')">🏠 Menü</button>
     <button class="btn-list-top" onclick="openListView()">☰ Liste</button>
+    
+    <!-- Nicht klickbarer Indikator für laufendes Tracking -->
+    <div id="rec-indicator">🔴 0m 0s</div>
 
     <div id="map"></div>
     
     <div class="info-area">
       <div class="address" id="address">Lade...</div>
-      <div class="big-number" id="count">-</div>
-      <div class="label" id="label">Zeitungen</div>
-      
-      <!-- NEU: AUFNAHME-STEUERUNG -->
-      <div style="display:flex; gap:10px; width:100%; margin-bottom:10px; max-width: 900px;">
-        <button id="btn-record" onclick="toggleRecording()" style="flex:1; background:#FF1744; color:white; border:none; padding:15px; border-radius:15px; font-weight:bold; font-size:18px; box-shadow: 0 4px 10px rgba(0,0,0,0.4);">⏺ Aufnahme starten</button>
-        <div id="record-timer" style="display:none; align-items:center; justify-content:center; background:#222; color:white; font-size:18px; font-weight:bold; padding:15px; border-radius:15px; min-width:80px; box-shadow: 0 4px 10px rgba(0,0,0,0.4);">0m 0s</div>
+      <div style="display:flex; flex-direction:column; align-items:center; flex-grow: 1; justify-content: center;">
+        <div class="big-number" id="count">-</div>
+        <div class="label" id="label">Zeitungen</div>
       </div>
-
+      
       <button class="btn-next" id="btn-next" onclick="nextHouse()">Manuell Erledigt ➔</button>
       <div id="gps-status">Suche Satelliten...</div>
     </div>
@@ -236,44 +254,43 @@
     <div class="header-bar">
       <button class="btn-back" onclick="showView('view-map')">← Zurück</button>
       <h2 class="header-title" id="list-title">Routen-Liste</h2>
+      <button onclick="toggleSlideMenu()" style="background:#333; border:none; color:white; font-size:20px; padding:8px 12px; border-radius:8px;">☰</button>
     </div>
     <ul class="clean-list" id="read-only-list"></ul>
     <div class="bottom-bar">
       <button class="btn-edit-mode" onclick="openEditView()">✏️ Liste bearbeiten</button>
-      <button class="btn-back" onclick="resetTour()" style="background:#444;">Tour von vorne beginnen</button>
+      <button class="btn-back" onclick="resetTour()" style="background:#444; margin-top:0;">Tour von vorne</button>
     </div>
   </div>
 
-  <!-- 4. BEARBEITUNGS ANSICHT (MIT KARTE) -->
+  <!-- 4. BEARBEITUNGS ANSICHT -->
   <div id="view-edit" class="view">
     <div class="header-bar">
-      <h2 class="header-title">Bearbeiten</h2>
+      <h2 class="header-title" id="edit-header-title">Bearbeiten</h2>
       <button class="btn-save-edit" onclick="openListView()">✔ Fertig</button>
+      <button onclick="toggleSlideMenu()" style="background:#333; border:none; color:white; font-size:20px; padding:8px 12px; border-radius:8px;">☰</button>
     </div>
     
     <div class="edit-scroll-area">
       <ul class="edit-list" id="edit-list-container"></ul>
 
       <div class="add-box" id="map-add-box">
-        <strong>Adresse per Karte auswählen:</strong>
+        <strong style="display:block; margin-bottom:8px; font-size:18px;">Adresse per Karte auswählen:</strong>
         <div id="edit-map-instruction">Tippe auf die Karte, um den Pin zu setzen.</div>
         
         <div id="edit-map"></div>
         
         <div class="add-row">
-          <input type="text" id="new-street" placeholder="Straße & Hsnr. (Wird autom. ausgefüllt)" style="background:#111; color:white; flex-grow:1; min-width:0;">
+          <input type="text" id="new-street" placeholder="Straße & Hsnr." style="background:#111; color:white; flex-grow:1; min-width:0;">
           <input type="number" id="new-count" value="1" min="1">
         </div>
         
-        <!-- ZWISCHENSTATION CHECKBOX (Nur beim Hinzufügen) -->
-        <label style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px; background: #333; padding: 12px; border-radius: 8px; cursor: pointer;">
-          <input type="checkbox" id="is-zwischenstation" style="width: 20px; height: 20px; flex-shrink: 0;">
-          <span style="font-size: 16px; color:#FF9800; font-weight:bold;">📦 Als Zwischenstation (Zeitungen holen)</span>
+        <label style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px; background: #333; padding: 10px; border-radius: 8px; cursor: pointer;">
+          <input type="checkbox" id="is-zwischenstation" style="width: 18px; height: 18px; flex-shrink: 0;">
+          <span style="font-size: 15px; color:#FF9800; font-weight:bold;">📦 Als Zwischenstation (Zeitungen holen)</span>
         </label>
 
         <button class="btn-add" onclick="addStop()">+ Hinzufügen</button>
-        
-        <button onclick="deleteCurrentRoute()" class="btn-del-route-desktop">🗑 Diese komplette Route löschen</button>
       </div>
     </div>
   </div>
@@ -282,7 +299,8 @@
   <div id="view-tracks" class="view">
     <div class="header-bar">
       <button class="btn-back" onclick="showView('view-start')">← Zurück</button>
-      <h2 class="header-title">Gespeicherte Routen</h2>
+      <h2 class="header-title">GPS-Strecken</h2>
+      <button onclick="toggleSlideMenu()" style="background:#333; border:none; color:white; font-size:20px; padding:8px 12px; border-radius:8px;">☰</button>
     </div>
     <div class="track-split">
       <ul id="track-list" class="clean-list" style="display:block;"></ul>
@@ -300,6 +318,7 @@
     
     // Aufzeichnung Variablen
     let isRecording = false;
+    let elapsedRecordingTime = 0;
     let recordingStartTime = null;
     let recordingTimerInterval = null;
     let currentTrack = [];
@@ -316,6 +335,48 @@
       if(trackMap) trackMap.invalidateSize();
     });
 
+    // --- SLIDE-IN MENÜ STEUERUNG ---
+    function toggleSlideMenu(e) {
+      if(e && e.target.id !== 'slide-menu') return;
+      const menu = document.getElementById('slide-menu');
+      menu.classList.toggle('open');
+      if(menu.classList.contains('open')) {
+        updateDeleteSelect();
+      }
+    }
+
+    function updateDeleteSelect() {
+      const select = document.getElementById('delete-route-select');
+      select.innerHTML = '';
+      for(let rName in routes) {
+        let opt = document.createElement('option');
+        opt.value = rName;
+        opt.innerText = rName;
+        if(rName === currentRouteName) opt.selected = true;
+        select.appendChild(opt);
+      }
+    }
+
+    function deleteSelectedRouteFromMenu() {
+      const select = document.getElementById('delete-route-select');
+      let targetRoute = select.value;
+      if(!targetRoute) return;
+
+      if (Object.keys(routes).length <= 1) { alert("Du musst mindestens eine Route behalten!"); return; }
+      if (confirm(`Möchtest du "${targetRoute}" wirklich komplett löschen?`)) {
+        delete routes[targetRoute];
+        localStorage.removeItem(`index_${targetRoute}`);
+        if(currentRouteName === targetRoute) {
+          currentRouteName = Object.keys(routes)[0];
+          route = routes[currentRouteName];
+          currentIndex = parseInt(localStorage.getItem(`index_${currentRouteName}`)) || 0;
+        }
+        saveData();
+        renderStartScreen();
+        showView('view-start');
+      }
+    }
+
     // --- VIEW MANAGER ---
     function showView(viewId) {
       document.querySelectorAll('.view').forEach(v => v.classList.remove('active-view'));
@@ -323,23 +384,14 @@
       
       if (viewId === 'view-start') renderStartScreen();
       else if (viewId === 'view-map') { 
-        if(map) { 
-          setTimeout(() => { map.invalidateSize(); }, 50); 
-          setTimeout(() => { map.invalidateSize(); }, 300); 
-        } 
+        if(map) { setTimeout(() => { map.invalidateSize(); }, 50); } 
         updateMainUI(); 
       }
       else if (viewId === 'view-edit') { 
-        if(editMap) { 
-          setTimeout(() => { editMap.invalidateSize(); }, 50); 
-          setTimeout(() => { editMap.invalidateSize(); }, 300);
-        } 
+        if(editMap) { setTimeout(() => { editMap.invalidateSize(); }, 50); } 
       }
       else if (viewId === 'view-tracks') {
-        if(trackMap) {
-          setTimeout(() => { trackMap.invalidateSize(); }, 50);
-          setTimeout(() => { trackMap.invalidateSize(); }, 300);
-        }
+        if(trackMap) { setTimeout(() => { trackMap.invalidateSize(); }, 50); }
       }
     }
 
@@ -353,7 +405,7 @@
         let count = routes[rName].length;
         let savedIdx = parseInt(localStorage.getItem(`index_${rName}`)) || 0;
         let statusText = savedIdx >= count && count > 0 ? `<span style="color:#00E676">Fertig! ✔</span>` : `${count} Stationen ➔`;
-        btn.innerHTML = `<span>🗺️ ${rName}</span> <span class="route-count">${statusText}</span>`;
+        btn.innerHTML = `<span>📍 ${rName}</span> <span class="route-count">${statusText}</span>`;
         btn.onclick = () => selectRoute(rName);
         menu.appendChild(btn);
       }
@@ -372,62 +424,88 @@
       let name = prompt("Name der neuen Route:");
       if (name && name.trim() !== "") {
         name = name.trim();
-        if (!routes[name]) { routes[name] = []; saveData(); renderStartScreen(); } 
-        else { alert("Route existiert bereits!"); }
-      }
-    }
-
-    function deleteCurrentRoute() {
-      if (Object.keys(routes).length <= 1) { alert("Du musst mindestens eine Route behalten!"); return; }
-      if (confirm(`Möchtest du "${currentRouteName}" wirklich löschen?`)) {
-        delete routes[currentRouteName];
-        localStorage.removeItem(`index_${currentRouteName}`);
-        currentRouteName = Object.keys(routes)[0];
-        route = routes[currentRouteName]; 
-        currentIndex = parseInt(localStorage.getItem(`index_${currentRouteName}`)) || 0;
-        saveData(); 
-        showView('view-start');
-      }
-    }
-
-    // --- 2. KARTEN LOGIK (AUSTRAGEN & AUFZEICHNUNG) ---
-    function toggleRecording() {
-      if(!isRecording) {
-        isRecording = true;
-        currentTrack = [];
-        recordingStartTime = Date.now();
-        document.getElementById('btn-record').innerHTML = "⏹ Aufnahme stoppen";
-        document.getElementById('btn-record').style.background = "#FF9800";
-        document.getElementById('btn-record').style.color = "black";
-        document.getElementById('record-timer').style.display = "flex";
-        document.getElementById('record-timer').innerText = "0m 0s";
-        recordingTimerInterval = setInterval(updateTimerDisplay, 1000);
-        if(walkPolyline) walkPolyline.setLatLngs([]);
-      } else {
-        isRecording = false;
-        clearInterval(recordingTimerInterval);
-        document.getElementById('btn-record').innerHTML = "⏺ Aufnahme starten";
-        document.getElementById('btn-record').style.background = "#FF1744";
-        document.getElementById('btn-record').style.color = "white";
-        document.getElementById('record-timer').style.display = "none";
-        
-        let mins = Math.floor((Date.now() - recordingStartTime) / 60000);
-        let name = prompt("Aufnahme speichern unter (z.B. Woche / Tag):", new Date().toLocaleDateString('de-DE'));
-        if(name && name.trim() !== "") {
-          let tracks = JSON.parse(localStorage.getItem('mySavedTracks')) || [];
-          tracks.push({ name: name.trim(), date: new Date().toISOString(), duration: mins, path: currentTrack });
-          localStorage.setItem('mySavedTracks', JSON.stringify(tracks));
-          alert(`Route "${name}" gespeichert! (${mins} Minuten)`);
+        if (!routes[name]) { 
+          routes[name] = []; 
+          currentRouteName = name;
+          route = routes[name];
+          currentIndex = 0;
+          saveData(); 
+          renderStartScreen(); 
+          openEditView();
+        } else { 
+          alert("Route existiert bereits!"); 
         }
       }
     }
 
+    // --- 2. KARTEN LOGIK (AUSTRAGEN & AUFZEICHNUNG) ---
+    
+    function toggleMenuRecording() {
+      if(!isRecording) {
+        // Aufnahme Starten
+        isRecording = true;
+        elapsedRecordingTime = 0;
+        currentTrack = [];
+        recordingStartTime = Date.now();
+        
+        let btnRecord = document.getElementById('menu-btn-record');
+        btnRecord.innerHTML = "⏹ Aufzeichnung stoppen & speichern";
+        btnRecord.style.background = "#222";
+        btnRecord.style.border = "2px solid #FF1744";
+        btnRecord.style.color = "white";
+        
+        document.getElementById('rec-indicator').style.display = "block";
+        document.getElementById('rec-indicator').innerText = "🔴 0m 0s";
+        recordingTimerInterval = setInterval(updateTimerDisplay, 1000);
+        
+        if(walkPolyline) walkPolyline.setLatLngs([]);
+        toggleSlideMenu(); // Menü schließen, um Karte zu sehen
+      } else {
+        // Aufnahme Stoppen
+        stopAndSaveRecording();
+        toggleSlideMenu();
+      }
+    }
+
+    function stopAndSaveRecording() {
+      if (!isRecording) return;
+      isRecording = false;
+      clearInterval(recordingTimerInterval);
+
+      let currentElapsed = elapsedRecordingTime + (Date.now() - recordingStartTime);
+      let mins = Math.floor(currentElapsed / 60000);
+
+      // Button im Menü zurücksetzen
+      let btnRecord = document.getElementById('menu-btn-record');
+      btnRecord.innerHTML = "⏺ GPS-Tracking starten";
+      btnRecord.style.background = "#FF1744";
+      btnRecord.style.border = "none";
+      btnRecord.style.color = "white";
+      
+      // Indikator verstecken
+      document.getElementById('rec-indicator').style.display = "none";
+
+      // Automatische Namensgebung und Speichern OHNE Prompt
+      let name = `${currentRouteName} - ${new Date().toLocaleString('de-DE')}`;
+      
+      let tracks = JSON.parse(localStorage.getItem('mySavedTracks')) || [];
+      tracks.push({ name: name, date: new Date().toISOString(), duration: mins, path: currentTrack });
+      localStorage.setItem('mySavedTracks', JSON.stringify(tracks));
+        
+      alert(`✅ Aufzeichnung erfolgreich gespeichert:\n"${name}"\n(Dauer: ${mins} Minuten)`);
+      
+      currentTrack = [];
+      if(walkPolyline) walkPolyline.setLatLngs([]);
+    }
+
     function updateTimerDisplay() {
        if(!isRecording) return;
-       let diff = Math.floor((Date.now() - recordingStartTime) / 1000);
+       let currentElapsed = elapsedRecordingTime + (Date.now() - recordingStartTime);
+       let diff = Math.floor(currentElapsed / 1000);
        let m = Math.floor(diff / 60);
        let s = diff % 60;
-       document.getElementById('record-timer').innerText = m + "m " + s + "s";
+       
+       document.getElementById('rec-indicator').innerText = "🔴 " + m + "m " + s + "s";
     }
 
     function initMap() {
@@ -464,7 +542,10 @@
         document.getElementById('address').innerText = "Route beendet!"; document.getElementById('count').innerText = "🎉"; document.getElementById('gps-status').innerText = "";
         document.getElementById('label').innerText = "Super gemacht!"; document.getElementById('address').style.color = "white";
         btnNext.innerText = "🏠 Zurück zum Menü"; btnNext.style.background = "#00E676"; btnNext.style.color = "black";
-        btnNext.onclick = () => { showView('view-start'); }; return; 
+        btnNext.onclick = () => { showView('view-start'); }; 
+        
+        if (isRecording) { stopAndSaveRecording(); }
+        return; 
       }
       
       btnNext.innerText = "Manuell Erledigt ➔"; btnNext.style.background = "#2962FF"; btnNext.style.color = "white"; btnNext.onclick = nextHouse;
@@ -475,7 +556,7 @@
       
       if (currentStop.isZwischen) {
         document.getElementById('count').style.color = "#FF9800";
-        document.getElementById('label').innerText = "📦 ZWISCHENSTATION (Zeitungen holen)";
+        document.getElementById('label').innerText = "📦 ZWISCHENSTATION";
         document.getElementById('address').style.color = "#FF9800";
       } else {
         document.getElementById('count').style.color = "#00E676";
@@ -539,6 +620,7 @@
 
     // --- 4. BEARBEITUNGS ANSICHT ---
     function openEditView() {
+      document.getElementById('edit-header-title').innerText = `Bearbeiten: ${currentRouteName}`;
       renderEditList();
       initEditMap();
       showView('view-edit');
@@ -552,14 +634,12 @@
         const li = document.createElement('li'); li.className = 'edit-item';
         let pinColor = stop.lat ? "#00E676" : "#444"; 
         
-        // Der 📦 Button wurde hier wie gewünscht aus der Liste entfernt. 
-        // Man setzt die Zwischenstation nur noch beim Hinzufügen.
         li.innerHTML = `
           <div class="drag-handle">☰</div>
           <input type="text" class="edit-street" value="${stop.adresse}" onchange="updateStop(${index}, 'adresse', this.value)" style="color: ${stop.isZwischen ? '#FF9800' : 'white'}; font-weight: ${stop.isZwischen ? 'bold' : 'normal'};">
           <input type="number" class="edit-count" value="${stop.anzahl}" min="1" onchange="updateStop(${index}, 'anzahl', this.value)">
           <div class="action-btns">
-            <button class="btn-action-sm" style="background:${pinColor}; color:black;" onclick="fixGPS(${index})" title="GPS Punkt auf Karte neu setzen">📍</button>
+            <button class="btn-action-sm" style="background:${pinColor}; color:black;" onclick="fixGPS(${index})" title="GPS Punkt neu setzen">📍</button>
             <button class="btn-action-sm" style="background:#FF1744; color:white;" onclick="deleteStop(${index})">X</button>
           </div>
         `;
@@ -626,7 +706,7 @@
           document.getElementById('edit-map-instruction').innerHTML = `Pin gesetzt: <b>${finalAddress}</b>. Jetzt Menge eingeben & hinzufügen!`;
           document.getElementById('edit-map-instruction').style.color = "#fff";
         } catch(e) {
-          document.getElementById('edit-map-instruction').innerText = "Konnte Adresse nicht automatisch laden. Bitte von Hand tippen.";
+          document.getElementById('edit-map-instruction').innerText = "Konnte Adresse nicht laden. Bitte von Hand tippen.";
         }
       });
       
@@ -637,7 +717,7 @@
       fixingIndex = index;
       let adrName = route[index].adresse;
       document.getElementById('map-add-box').scrollIntoView({ behavior: 'smooth' });
-      document.getElementById('edit-map-instruction').innerHTML = `<span style="color:#FF9800; font-size:18px;">Tippe jetzt auf der Karte exakt auf den Ort für:<br><b>${adrName}</b></span>`;
+      document.getElementById('edit-map-instruction').innerHTML = `<span style="color:#FF9800; font-size:14px;">Tippe auf der Karte auf den Ort für:<br><b>${adrName}</b></span>`;
       
       if(route[index].lat && editMap) {
         editMap.setView([route[index].lat, route[index].lng], 19);
@@ -723,7 +803,7 @@
       let tracks = JSON.parse(localStorage.getItem('mySavedTracks')) || [];
       
       if(tracks.length === 0) {
-        listEl.innerHTML = '<li style="padding:20px; color:#aaa; font-size:18px;">Keine gespeicherten Aufzeichnungen vorhanden.</li>';
+        listEl.innerHTML = '<li style="padding:20px; color:#aaa; font-size:18px;">Keine aufgezeichneten Strecken vorhanden.</li>';
       }
       
       tracks.forEach((t, i) => {
@@ -736,8 +816,8 @@
             <div class="details">${t.duration} Minuten | ${new Date(t.date).toLocaleDateString('de-DE')}</div>
           </div>
           <div style="display:flex; gap:10px; margin-top:10px;">
-            <button class="btn-action-sm" style="background:#2962FF; color:white; width:auto; padding:10px 15px;" onclick="showTrackOnMap(${i})">👁 Karte</button>
-            <button class="btn-action-sm" style="background:#FF1744; color:white; width:auto; padding:10px 15px;" onclick="deleteTrack(${i})">🗑</button>
+            <button class="btn-action-sm" style="background:#2962FF; color:white; width:auto; padding:8px 12px;" onclick="showTrackOnMap(${i})">👁 Karte</button>
+            <button class="btn-action-sm" style="background:#FF1744; color:white; width:auto; padding:8px 12px;" onclick="deleteTrack(${i})">🗑</button>
           </div>
         `;
         listEl.appendChild(li);
@@ -774,8 +854,7 @@
       }
     }
 
-    // --- GPS TRACKING (AUTO-WEITER & AUFNAHME) ---
-    // Optimiert mit enableHighAccuracy, timeout und maximumAge für besseren GPS Fix (Standort)
+    // --- GPS TRACKING ---
     navigator.geolocation.watchPosition(pos => {
       const lat = pos.coords.latitude; const lng = pos.coords.longitude;
       
@@ -783,7 +862,6 @@
         if(!userMarker) userMarker = L.circleMarker([lat, lng], {color: '#2962FF', fillColor: '#2962FF', fillOpacity: 1, radius: 8}).addTo(map); 
         else userMarker.setLatLng([lat, lng]); 
         
-        // Tracke den gelaufenen Weg, falls Aufnahme aktiv
         if(isRecording) {
             currentTrack.push([lat, lng]);
             if(!walkPolyline) walkPolyline = L.polyline(currentTrack, {color: '#FF1744', weight: 5, opacity: 0.8}).addTo(map);
@@ -799,16 +877,14 @@
         const dist = getDistance(lat, lng, target.lat, target.lng);
         if(statusEl) statusEl.innerText = `Entfernung: ${Math.round(dist)}m (Auto-Wechsel aktiv)`;
         
-        // VERGRÖSSERTER RADIUS (Neu: 40 Meter zum Ankommen, 55 Meter zum Weiterschalten)
         if (dist < 40) { 
           hasArrived = true; 
         } else if (hasArrived && dist > 55) { 
           nextHouse(); 
         }
-      } else { if(statusEl) statusEl.innerText = `Kein GPS für diesen Stopp hinterlegt`; }
+      } else { if(statusEl) statusEl.innerText = `Kein GPS hinterlegt`; }
     }, err => { 
-      if(document.getElementById('gps-status')) document.getElementById('gps-status').innerText = "GPS Fehler. Ortung aktiv?"; 
-      console.warn("GPS Warnung:", err);
+      if(document.getElementById('gps-status')) document.getElementById('gps-status').innerText = "GPS Fehler."; 
     }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }); 
 
     function getDistance(lat1, lon1, lat2, lon2) {
